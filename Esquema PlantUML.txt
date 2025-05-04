@@ -1,0 +1,121 @@
+@startuml HospitalSystem
+
+' Enumeraciones
+enum CategoriaMedico {
+  TITULAR
+  INTERINO
+  SUSTITUTO
+}
+
+enum TipoEmpleado {
+  ATS
+  AUXILIAR
+  CELADOR
+  ADMINISTRATIVO
+}
+
+enum TipoVacacion {
+  PLANIFICADA
+  DISFRUTADA
+}
+
+' Clase base
+class Persona {
+  - nombre: String
+  - direccion: String
+  - telefono: String
+  - codigoPostal: String
+  - nif: String
+  - numSeguridadSocial: String
+}
+
+' Clases principales
+class Medico {
+  - poblacion: String
+  - provincia: String
+  - numColegiado: String
+  - categoria: CategoriaMedico
+}
+
+class Empleado {
+  - poblacion: String
+  - provincia: String
+  - tipoEmpleado: TipoEmpleado
+}
+
+class Paciente {
+}
+
+class Consultorio {
+  - nombre: String
+}
+
+class CitaMedica {
+  - fecha: String
+  - hora: String
+}
+
+class Diagnostico {
+  - nombre: String
+  - descripcion: String
+}
+
+class Enfermedad {
+  - nombre: String
+  - descripcion: String
+}
+
+class Sintoma {
+  - descripcion: String
+}
+
+class Laboratorio {
+  - nombre: String
+  - direccion: String
+}
+
+class PrincipioActivo {
+  - nombre: String
+}
+
+class Medicamento {
+  - nombreComercial: String
+  - nombreGenerico: String
+  - presentacion: String
+  - esGenerico: boolean
+  - necesitaReceta: boolean
+}
+
+class RecetaMedica {
+  - fechaInicio: String
+  - fechaFin: String
+}
+
+class Vacacion {
+  - fechaInicio: String
+  - fechaFin: String
+  - tipo: TipoVacacion
+}
+
+' Relaciones de herencia
+Medico --|> Persona
+Empleado --|> Persona
+Paciente --|> Persona
+
+' Relaciones entre clases
+Medico "1" -- "0..*" Paciente : atiende >
+Paciente "1" -- "0..*" CitaMedica : tiene >
+CitaMedica "1" --> "1" Medico
+CitaMedica "1" --> "1" Paciente
+CitaMedica "1" --> "1" Consultorio
+CitaMedica "1" --> "0..1" Diagnostico
+Diagnostico "1" --> "0..1" Enfermedad
+Diagnostico "1" --> "0..1" RecetaMedica
+Enfermedad "1" -- "0..*" Sintoma : presenta >
+RecetaMedica "1" -- "0..*" Medicamento : contiene >
+Medicamento "1" --> "1" Laboratorio
+Medicamento "1" -- "1..*" PrincipioActivo : compone >
+Medico "1" -- "0..*" Vacacion : toma >
+Empleado "1" -- "0..*" Vacacion : toma >
+
+@enduml
