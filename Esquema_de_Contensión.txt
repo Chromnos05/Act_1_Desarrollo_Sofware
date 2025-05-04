@@ -1,0 +1,25 @@
+HospitalSystem/
+├── src/
+│   └── com/
+│       └── hospital/
+│           ├── model/
+│           │   ├── Persona.java
+│           │   ├── Medico.java
+│           │   ├── Paciente.java
+│           │   ├── Empleado.java
+│           │   ├── CitaMedica.java
+│           │   ├── Consultorio.java
+│           │   ├── Diagnostico.java
+│           │   ├── Enfermedad.java
+│           │   ├── Sintoma.java
+│           │   ├── RecetaMedica.java
+│           │   ├── Medicamento.java
+│           │   ├── PrincipioActivo.java
+│           │   ├── Laboratorio.java
+│           │   ├── Vacacion.java
+│           ├── enums/
+│           │   ├── CategoriaMedico.java
+│           │   ├── TipoEmpleado.java
+│           │   ├── TipoVacacion.java
+│           └── app/
+│               └── Main.java
